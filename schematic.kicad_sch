@@ -3341,7 +3341,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "SF2446E:SF2446E"
+		(symbol "TA1651A:TA1651A"
 			(pin_numbers
 				(hide yes)
 			)
@@ -3364,7 +3364,7 @@
 					)
 				)
 			)
-			(property "Value" "SF2446E"
+			(property "Value" "TA1651A"
 				(at 0 5.08 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3374,7 +3374,7 @@
 					)
 				)
 			)
-			(property "Footprint" "SF2446E:SF2446E"
+			(property "Footprint" "TA1651A:TA1651A"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3385,7 +3385,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://www.rfmi.co"
+			(property "Datasheet" "https://www.rfmw.com/datasheets/taisaw/TA1651A%20_Rev.1.0_.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3396,7 +3396,7 @@
 					)
 				)
 			)
-			(property "Description" "Murata / RFMi SF2446E SAW band-pass filter 435 MHz, 3 dB bandwidth 23 MHz, insertion loss 1.9 dB typ. (430-440 MHz), 50 Ohm, max. +10 dBm, SMD 3.0 x 3.0 mm (SM3030-6)"
+			(property "Description" "Tai-Saw TA1651A SAW band-pass filter 428 MHz, passband 420-436 MHz, insertion loss 2.0 dB typ. / 3.5 dB max., attenuation >= 45 dB (128-400 MHz, 470-728 MHz), 50 Ohm, max. +10 dBm, SMD 3.0 x 3.0 mm"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3407,7 +3407,7 @@
 					)
 				)
 			)
-			(property "ki_keywords" "SAW filter band-pass 435MHz"
+			(property "ki_keywords" "SAW filter band-pass 428MHz"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3418,7 +3418,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "SF2446E*"
+			(property "ki_fp_filters" "TA1651A*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3429,7 +3429,7 @@
 					)
 				)
 			)
-			(symbol "SF2446E_0_1"
+			(symbol "TA1651A_0_1"
 				(rectangle
 					(start -5.08 3.81)
 					(end 5.08 -3.81)
@@ -3538,7 +3538,7 @@
 					)
 				)
 			)
-			(symbol "SF2446E_1_1"
+			(symbol "TA1651A_1_1"
 				(pin passive line
 					(at 0 -6.35 90)
 					(length 2.54)
@@ -10815,7 +10815,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TG2520SMN-38.4MHz"
+		(property "Value" "TG2016SMN-38.4MHz"
 			(at 102.108 110.998 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10826,7 +10826,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Oscillator:Oscillator_SMD_SeikoEpson_TG2520SMN-xxx-xxxxxx-4Pin_2.5x2.0mm"
+		(property "Footprint" "TG2016SMN:TG2016SMN"
 			(at 107.95 127 0)
 			(hide yes)
 			(show_name no)
@@ -10837,7 +10837,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://support.epson.biz/td/api/doc_check.php?dl=app_TG2520SMN&lang=en"
+		(property "Datasheet" "https://support.epson.biz/td/api/doc_check.php?dl=app_TG2016SMN&lang=en"
 			(at 93.98 118.11 0)
 			(hide yes)
 			(show_name no)
@@ -10859,7 +10859,7 @@
 				)
 			)
 		)
-		(property "MPN" "TG2520SMN 38.4000M-MCGNNM3"
+		(property "MPN" "TG2016SMN 38.4000M-MCGNNM3"
 			(at 96.52 118.11 0)
 			(hide yes)
 			(show_name no)
@@ -10870,7 +10870,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C20341495"
+		(property "LCSC" "C1987359"
 			(at 96.52 118.11 0)
 			(hide yes)
 			(show_name no)
@@ -16669,7 +16669,7 @@
 		)
 	)
 	(symbol
-		(lib_id "SF2446E:SF2446E")
+		(lib_id "TA1651A:TA1651A")
 		(at 242.57 20.32 0)
 		(mirror y)
 		(unit 1)
@@ -16690,7 +16690,7 @@
 				)
 			)
 		)
-		(property "Value" "SF2446E"
+		(property "Value" "TA1651A"
 			(at 242.57 15.24 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16700,7 +16700,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SF2446E:SF2446E"
+		(property "Footprint" "TA1651A:TA1651A"
 			(at 242.57 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -16711,7 +16711,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.rfmi.co"
+		(property "Datasheet" "https://www.rfmw.com/datasheets/taisaw/TA1651A%20_Rev.1.0_.pdf"
 			(at 242.57 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -16722,7 +16722,7 @@
 				)
 			)
 		)
-		(property "Description" "Murata / RFMi SF2446E SAW band-pass filter 435 MHz, 3 dB bandwidth 23 MHz, insertion loss 1.9 dB typ. (430-440 MHz), 50 Ohm, max. +10 dBm, SMD 3.0 x 3.0 mm (SM3030-6)"
+		(property "Description" "Tai-Saw TA1651A SAW band-pass filter 428 MHz, passband 420-436 MHz, insertion loss 2.0 dB typ. / 3.5 dB max., attenuation >= 45 dB (128-400 MHz, 470-728 MHz), 50 Ohm, max. +10 dBm, SMD 3.0 x 3.0 mm"
 			(at 242.57 20.32 0)
 			(hide yes)
 			(show_name no)
@@ -16733,7 +16733,7 @@
 				)
 			)
 		)
-		(property "MPN" "SF2446E"
+		(property "MPN" "TA1651A"
 			(at 242.57 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -16744,7 +16744,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C3283586"
+		(property "LCSC" "C5224551"
 			(at 242.57 50.8 0)
 			(hide yes)
 			(show_name no)

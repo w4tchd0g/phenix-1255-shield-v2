@@ -2,7 +2,7 @@
 	(version 20251024)
 	(generator "kicad_symbol_editor")
 	(generator_version "10.0")
-	(symbol "SF2446E"
+	(symbol "TA1651A"
 		(pin_numbers
 			(hide yes)
 		)
@@ -25,7 +25,7 @@
 				)
 			)
 		)
-		(property "Value" "SF2446E"
+		(property "Value" "TA1651A"
 			(at 0 5.08 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -35,7 +35,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SF2446E:SF2446E"
+		(property "Footprint" "TA1651A:TA1651A"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -46,7 +46,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.rfmi.co"
+		(property "Datasheet" "https://www.rfmw.com/datasheets/taisaw/TA1651A%20_Rev.1.0_.pdf"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -57,7 +57,7 @@
 				)
 			)
 		)
-		(property "Description" "Murata / RFMi SF2446E SAW band-pass filter 435 MHz, 3 dB bandwidth 23 MHz, insertion loss 1.9 dB typ. (430-440 MHz), 50 Ohm, max. +10 dBm, SMD 3.0 x 3.0 mm (SM3030-6)"
+		(property "Description" "Tai-Saw TA1651A SAW band-pass filter 428 MHz, passband 420-436 MHz, insertion loss 2.0 dB typ. / 3.5 dB max., attenuation >= 45 dB (128-400 MHz, 470-728 MHz), 50 Ohm, max. +10 dBm, SMD 3.0 x 3.0 mm"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -68,7 +68,7 @@
 				)
 			)
 		)
-		(property "ki_keywords" "SAW filter band-pass 435MHz"
+		(property "ki_keywords" "SAW filter band-pass 428MHz"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -79,7 +79,7 @@
 				)
 			)
 		)
-		(property "ki_fp_filters" "SF2446E*"
+		(property "ki_fp_filters" "TA1651A*"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -90,7 +90,7 @@
 				)
 			)
 		)
-		(symbol "SF2446E_0_1"
+		(symbol "TA1651A_0_1"
 			(rectangle
 				(start -5.08 3.81)
 				(end 5.08 -3.81)
@@ -199,7 +199,7 @@
 				)
 			)
 		)
-		(symbol "SF2446E_1_1"
+		(symbol "TA1651A_1_1"
 			(pin passive line
 				(at 0 -6.35 90)
 				(length 2.54)

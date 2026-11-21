@@ -5,13 +5,13 @@
       "Application": "Pcbnew",
       "Version": "10.0.4"
     },
-    "CreationDate": "2026-11-21T16:38:38+01:00"
+    "CreationDate": "2026-11-21T19:48:33+01:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
       "Name": "phenix-1255-shield-v2",
       "GUID": "7068656e-6978-42d3-9132-35352d736869",
-      "Revision": "rev?"
+      "Revision": "V2"
     },
     "Size": {
       "X": 118.05,

@@ -378,7 +378,7 @@ def print_matching():
     f = 430e6
     w = 2 * math.pi * f
     q, c, l = lnet(200, 50, f)
-    print(f"\nRX matching at {f / 1e6:.0f} MHz, 50 ohm (SF2446E) -> 200 ohm (LNA, LnaZin = 1):")
+    print(f"\nRX matching at {f / 1e6:.0f} MHz, 50 ohm (TA1651A) -> 200 ohm (LNA, LnaZin = 1):")
     print(f"  ideal L-network: Q = {q:.2f}, series L = {l * 1e9:.2f} nH, shunt C = {c * 1e12:.2f} pF")
     z_series = zc(C21, f) + zl(L4, f)
     y_pin = 1 / (Z0 - z_series)

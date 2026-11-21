@@ -13,7 +13,8 @@ footprint Y axis inverted), Z up from the board surface, units mm.
   LFCN-490+.step        Mini-Circuits LFCN-490+, case FV1206 (datasheet outline drawing)
   EVQ-Q2Y03W.step       Panasonic EVQ-Q2 light touch switch (catalog ANCTB12E), 3.1 mm high
   KH-SMA-KE-Z.step      Kinghelm KH-SMA-KE-Z vertical THT SMA jack (drawing 2019-06-06)
-  SF2446E.step          Murata / RFMi SF2446E SAW filter, case SM3030-6 (datasheet 08/16/2022)
+  TA1651A.step          Tai-Saw TA1651A SAW filter, SMD 3.0 x 3.0 mm (datasheet Rev. 1)
+  TG2016SMN.step        Epson TG2016SMN TCXO, 2.0 x 1.6 mm (datasheet TG2016/2520SMN_EN ver. 1.3)
 """
 import os
 import sys
@@ -135,28 +136,51 @@ def kh_sma_ke_z():
     ])
 
 
-def sf2446e():
-    # Case SM3030-6: 3.0 x 3.0 mm Al2O3 body (A, B), 1.25 mm overall (C),
-    # ceramic 0.90 mm (D) with a nickel lid on top. Gold terminals on the
-    # bottom (bottom view G 0.85, H 1.50, I 0.60, E 2.80, F 1.60), shown here
-    # in top-view position: pin 1 (wide pad) top left, 2/3 below it, 6/5/4 right.
+def ta1651a():
+    # Tai-Saw TA1651A, datasheet Rev. 1 section D: 3.0 x 3.0 mm ceramic body,
+    # 1.4 mm max. overall (ceramic 1.0 mm and lid assumed), metal lid on top.
+    # Gold terminals on the bottom (bottom view 0.85 deep, wide pad A 1.5,
+    # middle pads 0.68 high, corner pads spanning 2.54 with 1.6 between them),
+    # shown here in top-view position: pin 1 (A, wide pad) top left, 2/3 below
+    # it, 6/5/4 right. The date-code triangle on the lid marks the pin-1 corner.
     t = 0.05
     pads = [
-        box(-1.5, 0.0, 0.8, 1.4, 0.0, t),      # 1 (H = 1.50)
-        box(-1.5, -0.65, -0.3, 0.3, 0.0, t),   # 2 IN
-        box(-1.5, -0.65, -1.4, -0.8, 0.0, t),  # 3
-        box(0.65, 1.5, -1.4, -0.8, 0.0, t),    # 4
-        box(0.65, 1.5, -0.3, 0.3, 0.0, t),     # 5 OUT
-        box(0.65, 1.5, 0.8, 1.4, 0.0, t),      # 6
+        box(-1.5, 0.0, 0.8, 1.27, 0.0, t),      # 1 = A (1.5 wide)
+        box(-1.5, -0.65, -0.34, 0.34, 0.0, t),  # 2 = B, IN
+        box(-1.5, -0.65, -1.27, -0.8, 0.0, t),  # 3 = C
+        box(0.65, 1.5, -1.27, -0.8, 0.0, t),    # 4 = D
+        box(0.65, 1.5, -0.34, 0.34, 0.0, t),    # 5 = E, OUT
+        box(0.65, 1.5, 0.8, 1.27, 0.0, t),      # 6 = F
     ]
     terminals = pads[0].fuse(*pads[1:])
-    body = box(-1.5, 1.5, -1.5, 1.5, t, 0.90)
-    lid = box(-1.4, 1.4, -1.4, 1.4, 0.90, 1.25)
-    dot = cyl(0.3, 1.25, 1.27, x=-1.0, y=1.0)
-    save("SF2446E", [
+    body = box(-1.5, 1.5, -1.5, 1.5, t, 1.0)
+    lid = box(-1.35, 1.35, -1.35, 1.35, 1.0, 1.35)
+    mark = box(-1.05, -0.65, 0.55, 0.95, 1.35, 1.37)
+    save("TA1651A", [
         part(body, "body_ceramic", CERAMIC),
         part(lid, "lid", TIN),
-        part(dot, "pin1_dot", DARK),
+        part(mark, "pin1_mark", DARK),
+        part(terminals, "terminals", GOLD),
+    ])
+
+
+def tg2016smn():
+    # Epson TG2016SMN, datasheet TG2016/2520SMN_EN ver. 1.3, section 8:
+    # 2.0 x 1.6 x 0.73 mm, ceramic base with a metal lid (lid height assumed).
+    # Gold terminals 0.4 x 0.4 mm in the corners (bottom view: 1.2 mm between
+    # them along the long side, 0.40 mm high). Shown like the footprint: long
+    # side along Y, pin 1 top left, 2 bottom left, 3 bottom right, 4 top right.
+    t = 0.05
+    pads = [box(sx * 0.4, sx * 0.8, sy * 0.6, sy * 1.0, 0.0, t)
+            for sx in (-1, 1) for sy in (-1, 1)]
+    terminals = pads[0].fuse(*pads[1:])
+    body = box(-0.8, 0.8, -1.0, 1.0, t, 0.45)
+    lid = box(-0.7, 0.7, -0.9, 0.9, 0.45, 0.73)
+    mark = cyl(0.2, 0.73, 0.75, x=-0.45, y=0.6)
+    save("TG2016SMN", [
+        part(body, "body_ceramic", CERAMIC),
+        part(lid, "lid", TIN),
+        part(mark, "pin1_mark", DARK),
         part(terminals, "terminals", GOLD),
     ])
 
@@ -165,4 +189,5 @@ if __name__ == "__main__":
     lfcn_490()
     evq_q2()
     kh_sma_ke_z()
-    sf2446e()
+    ta1651a()
+    tg2016smn()

@@ -22,7 +22,7 @@ V2 continues [phenix-1255-shield](https://github.com/w4tchd0g/phenix-1255-shield
 
 **RF front end**
 
-- **RX SAW filter:** Murata (RFMi) SF2446E (435 MHz, 23 MHz 3 dB bandwidth, SM3030-6, LCSC C3283586) instead of the Tai-Saw TA0655A (430 MHz, 4 MHz passband). JLCPCB places it; the TA0655A had to be soldered by hand. The SF2446E does not reject the TX signal at 440 MHz; for duplex operation an external duplexer at J5/J6 provides the TX/RX isolation.
+- **RX SAW filter:** Tai-Saw TA1651A (428 MHz, passband 420–436 MHz, 3.0 × 3.0 mm, LCSC C5224551) instead of the Tai-Saw TA0655A (430 MHz, 4 MHz passband). JLCPCB places it; the TA0655A had to be soldered by hand. It rejects ≥ 45 dB below 400 MHz and above 470 MHz, but only about 2 dB more than in the passband at 439–440 MHz (the upper edge), so it does not reject the TX signal; for duplex operation an external duplexer at J5/J6 provides the TX/RX isolation.
 - **Matching networks recalculated with the layout parasitics:** the short tracks and pads at the 100 Ω and 200 Ω nodes add about 1.2 pF each. **C13 = 2.2 pF** instead of 3.6 pF (TX return loss 40.6 dB instead of 14.6 dB) and **L3 = 43 nH** instead of 68 nH (RX match centred on the expected 6–8 pF at RF_IN instead of 5.24 pF). See [RF matching networks](#rf-matching-networks).
 - **SMA jacks:** vertical through-hole jacks Kinghelm KH-SMA-KE-Z (gold-plated, LCSC C504007) instead of the hybrid land pattern for either a vertical SMD jack (TE CONSMA001-SMD-G) or an edge-mount jack (Samtec SMA-J-P-H-ST-EM1). The four GND posts are soldered through all four GND layers and take the tightening torque; JLCPCB solders the jacks. Return loss at the ports about 33–35 dB.
 - **Jack position:** the jacks sit 0.64 mm further from the board edge (centre 5.04 mm from the edge), L1/D1 and L5/D8 1.27 mm further. FL2 sits as far from the bend of the RX line as C21.
@@ -35,6 +35,7 @@ V2 continues [phenix-1255-shield](https://github.com/w4tchd0g/phenix-1255-shield
 
 - **SX1255 exposed pad:** 9 thermal vias arranged as a cross instead of a 3 × 3 grid, so that the paste can be 4 regular squares (57 % of the land) instead of 8 irregular openings.
 - **Fiducials:** three fiducials (FID1–FID3) for machine assembly.
+- **TCXO:** Epson TG2016SMN (2.0 × 1.6 mm, LCSC C1987359) instead of the TG2520SMN (2.5 × 2.0 mm), which LCSC could not deliver. Same series and suffix (`38.4000M-MCGNNM3`: 38.4 MHz, 2.66–3.465 V, ±0.5 ppm from −40 to +85 °C, clipped sine) and the same pinout; only the land pattern is smaller (own footprint per the Epson datasheet). It sits at the position of the former TCXO, between the decoupling capacitors C5/C7 above and the coupling capacitor C10 below, with its own GND via like the capacitors.
 - **Assembly:** JLCPCB now places FL2 and J5/J6 as well. Only the display and the FRDM headers are soldered by hand.
 - **Ground stitching:** via fences adapted to the new positions, 319 GND vias.
 - **Silkscreen:** `RX`/`TX` without the frequency, aligned reference designators, revision V2 in the title blocks.
@@ -42,7 +43,7 @@ V2 continues [phenix-1255-shield](https://github.com/w4tchd0g/phenix-1255-shield
 **Documentation and scripts**
 
 - `scripts/rf_calc.py` models the through-hole SMA launch (axisymmetric field solver) and includes the layout parasitics in the matching networks.
-- `scripts/make_3d_models.py` generates the models of the KH-SMA-KE-Z and the SF2446E. The SMA variant images and `scripts/sma_variant.py` are gone.
+- `scripts/make_3d_models.py` generates the models of the KH-SMA-KE-Z, the TA1651A and the TG2016SMN. The SMA variant images and `scripts/sma_variant.py` are gone.
 - The length of the longest RF line is corrected (38.9 mm, about 36° at 440 MHz).
 
 ## Changes from Phenix-1255-HW
@@ -53,10 +54,10 @@ The basic hardware concept comes from [labdvm/Phenix-1255-HW](https://github.com
 
 - **Antenna matching:** new matching networks. TX: an L-network transforms the 50 Ω of the LFCN-490+ to the 100 Ω optimum load of RFO_P (before: 100 pF straight to the filter). RX: 100 pF / 33 nH / 43 nH for the 200 Ω LNA input (before: 39 nH series, 82 nH shunt). See [RF matching networks](#rf-matching-networks).
 - **RF connectors:** SMA instead of U.FL: vertical through-hole jacks (Kinghelm KH-SMA-KE-Z) at J5/J6. The four GND posts are soldered through all four GND layers, so the jacks take the tightening torque.
-- **RX SAW filter:** Murata (RFMi) SF2446E (435 MHz, 23 MHz 3 dB bandwidth, SM3030-6) instead of the Tai-Saw TA0655A (430 MHz, 4 MHz passband), so that JLCPCB can place it.
+- **RX SAW filter:** Tai-Saw TA1651A (428 MHz, passband 420–436 MHz) instead of the Tai-Saw TA0655A (430 MHz, 4 MHz passband), so that JLCPCB can place it.
 - **Port protection:** each SMA port has a 100 nH DC shunt and a low-capacitance TVS diode (before: 1 MΩ to GND). A BAV99 limiter protects the RX input of the SX1255.
 - **PCB:** 4 layers instead of 2, with 50 Ω coplanar waveguides on a solid GND plane, via fences along the RF lines and a GND stitching grid, see [PCB](#pcb). No mounting holes.
-- **Reference clock:** 2520 footprint only, TCXO AC-coupled to XTB through 10 nF (before: direct connection with 10 kΩ / 10 pF to GND).
+- **Reference clock:** Epson TG2016SMN (2.0 × 1.6 mm) footprint only, TCXO AC-coupled to XTB through 10 nF (before: direct connection with 10 kΩ / 10 pF to GND).
 
 **Power**
 
@@ -93,8 +94,8 @@ See [MCU pin assignment](#mcu-pin-assignment) for the pins. The TX driver amplif
 | Function | Part | Manufacturer |
 |---|---|---|
 | RF transceiver | SX1255IWLTRT (QFN-32, 5 × 5 mm) | Semtech |
-| Reference clock | TG2520SMN 38.4 MHz TCXO (2.5 × 2.0 mm) | Epson |
-| SAW filter 435 MHz (RX) | SF2446E (SM3030-6, 3.0 × 3.0 mm, LCSC C3283586) | Murata (RFMi) |
+| Reference clock | TG2016SMN 38.4000M-MCGNNM3, 38.4 MHz TCXO (2.0 × 1.6 mm, LCSC C1987359) | Epson |
+| SAW filter 428 MHz (RX) | TA1651A (3.0 × 3.0 mm, LCSC C5224551) | Tai-Saw |
 | Low-pass filter (TX) | LFCN-490+ | Mini-Circuits |
 | RF connectors (TX, RX) | KH-SMA-KE-Z (SMA jack, vertical, through hole, gold-plated, LCSC C504007) | Kinghelm |
 | ESD protection RF ports | PESD5V0F1BL | Nexperia |
@@ -127,7 +128,7 @@ The RF part runs from its own low-noise LDO. Only the MCU-side parts use the FRD
 ### RF
 
 - **TX:** SX1255 RFO_P → matching network (100 pF / 2.2 pF / 18 nH) → LFCN-490+ low-pass → SMA **J5 (TX)**. RFO_N is AC-coupled to GND.
-- **RX:** SMA **J6 (RX)** → SF2446E SAW filter → matching network (100 pF / 33 nH / 43 nH) → SX1255 RFI, with a BAV99 limiter at the RFI pin. The SF2446E is wide (23 MHz) and does not reject the TX signal at 440 MHz; for duplex operation an external duplexer connected to J5/J6 provides the TX/RX isolation.
+- **RX:** SMA **J6 (RX)** → TA1651A SAW filter (passband 420–436 MHz) → matching network (100 pF / 33 nH / 43 nH) → SX1255 RFI, with a BAV99 limiter at the RFI pin. The TA1651A rejects ≥ 45 dB below 400 MHz (e.g. TETRA 380–395 MHz) and above 470 MHz, but 439–440 MHz lies on its upper edge (about 3.5–6 dB in total, 2–4 dB more than in the passband), so it does not reject the TX signal; for duplex operation an external duplexer connected to J5/J6 provides the TX/RX isolation.
 - **SMA ports:** each port has a 100 nH DC shunt to GND (L1/L5) and a low-capacitance TVS diode (D1/D8). They need no further matching: return loss ≥ 24 dB, about 33–35 dB together with the through-hole launch of the jack (about 0.64 pF, which partly cancels the 100 nH).
 - **RF lines:** 50 Ω coplanar waveguide with ground (CPWG) on F.Cu over the solid GND plane In1, 0.30 mm track, 0.30 mm gap (0.20 mm inside the SX1255 courtyard). A field-solver check gives about 52 Ω with solder mask, i.e. a return loss of about 33 dB. The lines are electrically short (longest RF net 38.9 mm ≈ 36° at 440 MHz).
 - **Reference clock:** the 38.4 MHz TCXO drives XTB through 10 nF, XTA is left open (TCXO connection per the datasheet). 38.4 MHz is above the specified FXOSC range of the SX1255 (32 / 36 / 36.864 MHz min/typ/max, datasheet Rev. 3.0, table 5). It has been **tested and works**; keep in mind that it is outside the specification. All frequencies derived from FXOSC (PLL step, I/Q sample rate) scale with 38.4 MHz.
@@ -136,7 +137,7 @@ The RF part runs from its own low-noise LDO. Only the MCU-side parts use the FRD
 
 ### RF matching networks
 
-The networks adapt the SX1255 impedances to the 50 Ω of the LFCN-490+ and the SF2446E. They are based on the SX1255 datasheet (Rev. 3.0) and on separate front-end design notes (*SX1255 RF front end: TX 440 MHz / RX 430 MHz*, not in this repository). The values include the parasitic capacitance of the layout at the high-impedance nodes (tracks and pads, estimated with the field solver) and the ESL of C13. They are **start values**; the final tuning is done on the board with a VNA.
+The networks adapt the SX1255 impedances to the 50 Ω of the LFCN-490+ and the TA1651A. They are based on the SX1255 datasheet (Rev. 3.0) and on separate front-end design notes (*SX1255 RF front end: TX 440 MHz / RX 430 MHz*, not in this repository). The values include the parasitic capacitance of the layout at the high-impedance nodes (tracks and pads, estimated with the field solver) and the ESL of C13. They are **start values**; the final tuning is done on the board with a VNA.
 
 #### TX: 100 Ω → 50 Ω
 
@@ -163,7 +164,7 @@ C14 (100 pF) only blocks DC. With the values used, RF_OP sees 99.2 + j1.7 Ω at 
 #### RX: 50 Ω → 200 Ω
 
 ```
-J6 ──► SF2446E (50 Ω) ──C21 100p──L4 33n──┬────────┬────────┬──► RF_IN (200 Ω)
+J6 ──► TA1651A (50 Ω) ──C21 100p──L4 33n──┬────────┬────────┬──► RF_IN (200 Ω)
                                           │        │        │
                                         L3 43n   D4 BAV99  C_pin (LNA input)
                                           │        │        │
@@ -184,9 +185,9 @@ The ideal L-network at 430 MHz is a series L of 32.05 nH (**L4 = 33 nH**) and a 
 | 7.5 pF | 11.7 dB | 398 MHz |
 | 8.0 pF | 8.6 dB | 385 MHz |
 
-With the nominal value the return loss is ≥ 20 dB from 420 to 446 MHz, about the 23 MHz 3 dB bandwidth of the SF2446E. The 0.39 pF of the node between C21 and L4 is included.
+With the nominal value the return loss is ≥ 20 dB from 420 to 446 MHz, which covers the 420–436 MHz passband of the TA1651A. The 0.39 pF of the node between C21 and L4 is included.
 
-**Tuning element: L3.** For a match at 430 MHz: 5 pF → 77 nH, 6 pF → 49 nH, 7 pF → 36 nH, 8 pF → 29 nH (keep 39 / 47 nH at hand). Procedure (from the design notes): before the SF2446E is fitted, solder a coax pigtail to its output pad (pin 5) and measure S11 towards the SX1255. If the minimum is above 430 MHz, increase L3; if it is below, decrease L3. Adjust the depth with L4 (27 / 33 / 39 nH). Target S11 ≤ −10 dB, then optimise for best sensitivity.
+**Tuning element: L3.** For a match at 430 MHz: 5 pF → 77 nH, 6 pF → 49 nH, 7 pF → 36 nH, 8 pF → 29 nH (keep 39 / 47 nH at hand). Procedure (from the design notes): before the TA1651A is fitted, solder a coax pigtail to its output pad (pin 5) and measure S11 towards the SX1255. If the minimum is above 430 MHz, increase L3; if it is below, decrease L3. Adjust the depth with L4 (27 / 33 / 39 nH). Target S11 ≤ −10 dB, then optimise for best sensitivity.
 
 ### Digital interface
 
@@ -287,7 +288,7 @@ Regenerate the files after every layout change:
 These points cannot be checked on paper and need a measurement on the first board:
 
 - **TX output:** check the single-ended output on RFO_P (no DC feed) against the Semtech reference design, and trim C13 for maximum output power.
-- **RX match:** the match assumes 6.41 pF at RF_IN, which the datasheet does not specify. Measure S11 at the SF2446E output (FL2 pin 5) and adjust L3/L4.
+- **RX match:** the match assumes 6.41 pF at RF_IN, which the datasheet does not specify. Measure S11 at the TA1651A output (FL2 pin 5) and adjust L3/L4.
 - **PA supply:** confirm that the SX1255 tolerates VBAT3 switched off while VBAT1/VBAT2 are powered. With the PA off (`~PA_EN` high), measure VBAT3 against GND (e.g. at C19/C20): a few millivolts are fine; a clearly measurable voltage means current flows through the SX1255 into the 150 Ω discharge of U2. In that case remove R20, then VBAT3 floats.
 - **SMA jacks:** the posts stick out about 2.4 mm below the shield. Check on the first board that nothing on the FRDM board touches them.
 - **Reference clock:** 38.4 MHz is outside the SX1255 specification (tested and working, see [RF](#rf)).
