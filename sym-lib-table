@@ -1,0 +1,9 @@
+(sym_lib_table
+  (version 0)
+  (lib (name "phenix-1255-shield-v2")(type "KiCad")(uri "${KIPRJMOD}/phenix-1255-shield-v2.kicad_sym")(options "")(descr ""))
+  (lib (name "SX1255")(type "KiCad")(uri "${KIPRJMOD}/ext_parts/SX1255IWLTRT.kicad_sym")(options "")(descr "Semtech SX1255"))
+  (lib (name "Display_128x64_096_I2C")(type "KiCad")(uri "${KIPRJMOD}/ext_parts/Display_128x64_096_I2C.kicad_sym")(options "")(descr "OLED 0.96 inch 128x64 SSD1306 I2C"))
+  (lib (name "LFCN-490+")(type "KiCad")(uri "${KIPRJMOD}/ext_parts/LFCN-490+.kicad_sym")(options "")(descr "Mini-Circuits LFCN-490+ low-pass filter"))
+  (lib (name "SF2446E")(type "KiCad")(uri "${KIPRJMOD}/ext_parts/SF2446E.kicad_sym")(options "")(descr "Murata / RFMi SF2446E SAW filter 435 MHz (LCSC C3283586)"))
+  (lib (name "EVQ-Q2Y03W")(type "KiCad")(uri "${KIPRJMOD}/ext_parts/EVQ-Q2Y03W.kicad_sym")(options "")(descr "Panasonic EVQ-Q2 tactile switch"))
+)
