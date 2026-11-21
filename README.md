@@ -37,7 +37,7 @@ V2 continues [phenix-1255-shield](https://github.com/w4tchd0g/phenix-1255-shield
 - **Fiducials:** three fiducials (FID1–FID3) for machine assembly.
 - **Assembly:** JLCPCB now places FL2 and J5/J6 as well. Only the display and the FRDM headers are soldered by hand.
 - **Ground stitching:** via fences adapted to the new positions, 319 GND vias.
-- **Silkscreen:** DM5LF logo in the display area (covered by the display), `RX`/`TX` without the frequency, aligned reference designators, revision V2 in the title blocks.
+- **Silkscreen:** `RX`/`TX` without the frequency, aligned reference designators, revision V2 in the title blocks.
 
 **Documentation and scripts**
 
